@@ -5,40 +5,51 @@ class Counter extends Component {
   state = {
     count: 0,
     tags: [
-      // {
-      //   id: 1,
-      //   el: "tag1"
-      // },
-      // {
-      //   id: 2,
-      //   el: "tag1"
-      // },
-      // {
-      //   id: 3,
-      //   el: "tag1"
-      // },
-      // {
-      //   id: 4,
-      //   el: "tag1"
-      // }
+      {
+        id: 1,
+        el: "tag1"
+      },
+      {
+        id: 2,
+        el: "tag1"
+      },
+      {
+        id: 3,
+        el: "tag1"
+      },
+      {
+        id: 4,
+        el: "tag1"
+      }
     ]
   };
+
+  // a classic approach for 'binding' event handlers
+  // constructor() {
+  //   super(); // Syntax error: 'this' is not allowed before super()
+  //   this.handleIncrement = this.handleIncrement.bind(this);
+  // }
 
   render() {
     return (
       <React.Fragment>
         <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
-        <button className="btn btn-secondary btn-sm">Increment</button>
+        <button
+          onClick={this.handleIncrement}
+          className="btn btn-secondary btn-sm"
+        >
+          Increment
+        </button>
         {this.renderTags()}
-        {/* following is a conditional expression within 'jsx'5 */}
-        {this.state.tags.length === 0 && (
-          <p className="text-warning">Put some tags here...</p>
-        )}
       </React.Fragment>
     );
   }
 
   // helper methods
+  handleIncrement = () => {
+    // the arrow function approach that auto inherited (NOT re-bind) the 'this'
+    console.log("Incremented", this.state.count);
+  };
   renderTags() {
     if (this.state.tags.length === 0)
       return (
