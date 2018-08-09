@@ -34,7 +34,7 @@ class Counter extends Component {
     return (
       <React.Fragment>
         <button
-          onClick={this.handleIncrement}
+          onClick={() => this.handleIncrement({ id: 1 })}
           className="btn btn-secondary btn-sm"
         >
           +
@@ -56,7 +56,8 @@ class Counter extends Component {
   }
 
   /* helper methods */
-  handleIncrement = () => {
+  handleIncrement = e => {
+    console.log(e);
     // the arrow function approach that auto inherited (NOT re-bind) the 'this'
     this.setState({ count: this.state.count + 1 });
   };
