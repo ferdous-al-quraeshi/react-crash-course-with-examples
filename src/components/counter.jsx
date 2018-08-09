@@ -31,8 +31,10 @@ class Counter extends Component {
   // }
 
   render() {
+    console.log(this.props);
     return (
       <div className="jumbotron">
+        <h4>Counter# {this.props.id}</h4>
         <button
           onClick={() => this.handleIncrement({ id: 1 })}
           className="btn btn-secondary btn-sm"
@@ -46,11 +48,12 @@ class Counter extends Component {
         >
           -
         </button>
-        <button onClick={this.handleReset} className="btn btn-light btn-sm">
+        <button
+          onClick={this.handleReset}
+          className="btn btn-light btn-sm ml-2"
+        >
           Reset
         </button>
-
-        {this.renderTags()}
       </div>
     );
   }
