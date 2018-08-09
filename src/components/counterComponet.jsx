@@ -24,7 +24,7 @@ class Counter extends Component {
     ]
   };
 
-  // a classic approach for 'binding' event handlers
+  /* a classic approach for 'binding' event handlers */
   // constructor() {
   //   super(); // Syntax error: 'this' is not allowed before super()
   //   this.handleIncrement = this.handleIncrement.bind(this);
@@ -33,22 +33,40 @@ class Counter extends Component {
   render() {
     return (
       <React.Fragment>
-        <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
         <button
           onClick={this.handleIncrement}
           className="btn btn-secondary btn-sm"
         >
-          Increment
+          +
         </button>
+        <span className={this.getBadgeClasses()}> {this.formatCount()}</span>
+        <button
+          onClick={this.handleDecrement}
+          className="btn btn-secondary btn-sm"
+        >
+          -
+        </button>
+        <button onClick={this.handleReset} className="btn btn-light btn-sm">
+          Reset
+        </button>
+
         {this.renderTags()}
       </React.Fragment>
     );
   }
 
-  // helper methods
+  /* helper methods */
   handleIncrement = () => {
     // the arrow function approach that auto inherited (NOT re-bind) the 'this'
-    console.log("Incremented", this.state.count);
+    this.setState({ count: this.state.count + 1 });
+  };
+  handleDecrement = () => {
+    // the arrow function approach that auto inherited (NOT re-bind) the 'this'
+    this.setState({ count: this.state.count - 1 });
+  };
+  handleReset = () => {
+    // the arrow function approach that auto inherited (NOT re-bind) the 'this'
+    this.setState({ count: 0 });
   };
   renderTags() {
     if (this.state.tags.length === 0)
@@ -58,11 +76,24 @@ class Counter extends Component {
           <span className="ml-2 text-warning">Put some tags here...</span>
         </p>
       );
-    return <ul>{this.state.tags.map(t => <li key={t.id}>{t.el}</li>)}</ul>;
+    return (
+      <ul>
+        {this.state.tags.map(t => (
+          <li key={t.id}>{t.el}</li>
+        ))}
+      </ul>
+    );
   }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
-    classes += this.state.count === 0 ? "warning" : "primary";
+    classes +=
+      this.state.count === 0
+        ? "warning"
+        : this.state.count < 0
+          ? "danger"
+          : this.state.count > 0
+            ? "primary"
+            : 0;
     return classes;
   }
   formatCount() {
