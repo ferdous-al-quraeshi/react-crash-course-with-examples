@@ -31,7 +31,6 @@ class Counter extends Component {
   // }
 
   render() {
-    console.log(this.props);
     return (
       <div className="jumbotron">
         <h4>Counter# {this.props.id}</h4>
@@ -54,13 +53,18 @@ class Counter extends Component {
         >
           Reset
         </button>
+        <button
+          onClick={() => this.props.onDelete(this.props.id)}
+          className="btn btn-danger btn-sm ml-2"
+        >
+          Delete
+        </button>
       </div>
     );
   }
 
   /* helper methods */
-  handleIncrement = e => {
-    console.log(e);
+  handleIncrement = () => {
     // the arrow function approach that auto inherited (NOT re-bind) the 'this'
     this.setState({ value: this.state.value + 1 });
   };
