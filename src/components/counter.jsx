@@ -32,7 +32,7 @@ class Counter extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <div className="jumbotron">
         <button
           onClick={() => this.handleIncrement({ id: 1 })}
           className="btn btn-secondary btn-sm"
@@ -51,7 +51,7 @@ class Counter extends Component {
         </button>
 
         {this.renderTags()}
-      </React.Fragment>
+      </div>
     );
   }
 
