@@ -37,22 +37,6 @@ class Counter extends Component {
   }
 
   /* helper methods */
-  renderTags() {
-    if (this.state.tags.length === 0)
-      return (
-        <p>
-          No tags found!
-          <span className="ml-2 text-warning">Put some tags here...</span>
-        </p>
-      );
-    return (
-      <ul>
-        {this.state.tags.map(t => (
-          <li key={t.id}>{t.el}</li>
-        ))}
-      </ul>
-    );
-  }
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
     classes +=
