@@ -11,21 +11,29 @@ let style = {
 
 class Counters extends Component {
   render() {
+    const {
+      onReset,
+      counters,
+      onDecrement,
+      onIncrement,
+      onDelete
+    } = this.props;
+
     return (
       <div>
         <button
           style={style.resetBtn}
-          onClick={this.props.onReset}
+          onClick={onReset}
           className="btn btn-secondary ml-3"
         >
           Reset
         </button>
-        {this.props.counters.map(counter => (
+        {counters.map(counter => (
           <Counter
             key={counter.id}
-            onDecrement={this.props.onDecrement}
-            onIncrement={this.props.onIncrement}
-            onDelete={this.props.onDelete}
+            onDecrement={onDecrement}
+            onIncrement={onIncrement}
+            onDelete={onDelete}
             counter={counter} // this 'counter' object encapsulates all the props / data within it and save us from redundant explicit prop declaration
           />
         ))}
