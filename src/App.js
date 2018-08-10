@@ -14,6 +14,41 @@ class App extends Component {
     ]
   };
 
+  // 'constructor' (1st) hook of the MOUNTing phase
+  constructor(props) {
+    super(props);
+    console.log("App - Constructor", this.props);
+    // this.state = this.props.something.... // can be set state directly to the props here
+  }
+
+  // 'render' (2nd) hook of the MOUNTing phase
+  render() {
+    console.log("App - Rendered"); // along with all its children recursively
+    return (
+      <React.Fragment>
+        <NavBar
+          totalCounters={this.state.counters.filter(c => c.value > 0).length}
+          onReset={this.handleReset}
+        />
+        <main>
+          <Counters
+            counters={this.state.counters}
+            onDecrement={this.handleDecrement}
+            onIncrement={this.handleIncrement}
+            onDelete={this.handleDelete}
+          />
+        </main>
+      </React.Fragment>
+    );
+  }
+
+  // 'componentDidMount' (3rd) hook of the MOUNTing phase
+  componentDidMount() {
+    // perfect place to make AJAX call to get data from the server
+    console.log("App - Mounted");
+    // this.setState(to the recieved data...)
+  }
+
   /* Children's event handlers */
   handleDecrement = counter => {
     const counters = [...this.state.counters];
@@ -39,25 +74,6 @@ class App extends Component {
     });
     this.setState({ counters });
   };
-
-  render() {
-    return (
-      <React.Fragment>
-        <NavBar
-          totalCounters={this.state.counters.filter(c => c.value > 0).length}
-          onReset={this.handleReset}
-        />
-        <main>
-          <Counters
-            counters={this.state.counters}
-            onDecrement={this.handleDecrement}
-            onIncrement={this.handleIncrement}
-            onDelete={this.handleDelete}
-          />
-        </main>
-      </React.Fragment>
-    );
-  }
 }
 
 export default App;

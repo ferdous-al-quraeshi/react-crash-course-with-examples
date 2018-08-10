@@ -3,8 +3,9 @@ import Counter from "./counter";
 
 class Counters extends Component {
   render() {
+    console.log("Counters - Rendered");
+    // 'Object destructuring' applied
     const { counters, onDecrement, onIncrement, onDelete } = this.props;
-
     return (
       <div>
         {counters.map(counter => (

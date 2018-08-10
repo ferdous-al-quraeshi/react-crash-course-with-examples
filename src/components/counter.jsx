@@ -9,7 +9,21 @@ class Counter extends Component {
   //   this.handleIncrement = this.handleIncrement.bind(this);
   // }
 
+  // 'componentDidUpdate' hook of the UPDATEing phase
+  componentDidUpdate(prevProps, prevState) {
+    console.log("Previous Props", prevProps);
+    console.log("Previous States", prevState);
+    if (prevProps.counter.value === this.props.counter.value) {
+      console.log("didn't updated!!!");
+    }
+  }
+
+  componentWillUnmount() {
+    console.log("Component - Unmount");
+  }
+
   render() {
+    console.log("Counter - Rendered");
     return (
       <div className="jumbotron">
         <h4>Counter# {this.props.counter.id}</h4>

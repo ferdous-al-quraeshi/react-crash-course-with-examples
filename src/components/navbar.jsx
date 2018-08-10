@@ -11,6 +11,7 @@ let style = {
 // Stateless Functional Component
 const NavBar = ({ totalCounters, onReset }) => {
   // 'Object destructuring' applied
+  console.log("NavBar - Rendered");
   return (
     <nav className="navbar navbar-light bg-light">
       <span className="navbar-brand">
